@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Edge AI IDS</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<meta http-equiv="refresh" content="3">
+</head>
+<body>
+
+<div class="container">
+
+<h1>🚀 Edge AI Intrusion Detection System</h1>
+
+<h2>Status: {{ result }}</h2>
+
+{% if result == "attack" %}
+<p class="attack">⚠ Intrusion Detected</p>
+{% else %}
+<p class="normal">✅ Normal Traffic</p>
+{% endif %}
+
+<h3>Confidence: {{ confidence }}%</h3>
+
+<div>
+<p>Normal: {{ normal_count }}</p>
+<p>Attack: {{ attack_count }}</p>
+</div>
+
+<canvas id="chart"></canvas>
+
+<table>
+<tr><th>Time</th><th>Status</th><th>Confidence</th></tr>
+{% for h in history %}
+<tr>
+<td>{{ h.time }}</td>
+<td>{{ h.result }}</td>
+<td>{{ h.confidence }}%</td>
+</tr>
+{% endfor %}
+</table>
+
+<br>
+
+<a href="/attack"><button>⚠ Simulate Attack</button></a>
+<a href="/download"><button>📄 Download Report</button></a>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+new Chart(document.getElementById("chart"), {
+type: 'pie',
+data: {
+labels: ['Normal', 'Attack'],
+datasets: [{
+data: [{{ normal_count }}, {{ attack_count }}]
+}]
+}
+});
+</script>
+
+</body>
+</html>

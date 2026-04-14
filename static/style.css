@@ -1,0 +1,32 @@
+body {
+background: black;
+color: gold;
+text-align: center;
+font-family: Arial;
+}
+
+.container {
+width: 60%;
+margin: auto;
+}
+
+.attack { color: red; }
+.normal { color: lime; }
+
+table {
+width: 100%;
+border-collapse: collapse;
+}
+
+td, th {
+border: 1px solid gold;
+padding: 8px;
+}
+
+button {
+padding: 10px;
+margin: 10px;
+background: gold;
+border: none;
+cursor: pointer;
+}
